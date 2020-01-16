@@ -36,7 +36,7 @@ public class Resources {
 		try
 		{
 			connectionProp = new Properties();
-			connectionProp.load(new FileInputStream("src\\resources\\Connection.properties"));
+			connectionProp.load(new FileInputStream("src\\resources\\connectionProp.properties"));
 			PropertyConfigurator.configure(connectionProp);
 			
 			Class.forName(connectionProp.getProperty("DB.Driver"));
@@ -51,11 +51,15 @@ public class Resources {
 		}
 		catch(Exception e)
 		{
+			log.error(e);
 			System.out.println("Fatal Error. Exiting");
 			System.exit(0);
 		}
 		
 	}
+	
+	public static void loadResources()
+	{}
 	
 
 }
