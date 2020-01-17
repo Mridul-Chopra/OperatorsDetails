@@ -39,8 +39,7 @@ public class Resources {
 			connectionProp.load(new FileInputStream("src\\resources\\connectionProp.properties"));
 			PropertyConfigurator.configure(connectionProp);
 			
-			Class.forName(connectionProp.getProperty("DB.Driver"));
-			conn = DriverManager.getConnection(connectionProp.getProperty("DB.url"));
+			Class.forName(connectionProp.getProperty("DB.Driver"));		
 			
 			String url = connectionProp.getProperty("DB.url");
 			String username = connectionProp.getProperty("DB.username");

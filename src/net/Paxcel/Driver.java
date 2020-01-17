@@ -16,7 +16,7 @@ public class Driver
 			System.out.println("1. Print messages received by a number from any number.");
 			System.out.println("2. Print messages sent by any number.");
 			System.out.println("3. Print messages received by any number.");
-			System.out.println("4. Print messages received by a person from other person.");
+			System.out.println("4. Print messages received by a number from Punjab.");
 			System.out.println("5. Print messages received by a number from Airtel Punjab.");
 			System.out.println("6. Print messages received from 987869112**.");
 			
@@ -27,17 +27,23 @@ public class Driver
 			{
 				case 1:
 				{
-					ArrayList<String>result = operator.printMessage(1,2);
-					result.stream().forEach(System.out::print);
+					ArrayList<String>result = operator.printMessages("9876691205","9876691225");
+					result.stream().forEach(System.out::println);
 					break;
 				}
 				case 2:
 				{
+					ArrayList<String>result = operator.printMessages("9876691205" , true);
+					result.stream().forEach(System.out::println);
 					break;
+					
 				}
 				case 3:
 				{
+					ArrayList<String>result = operator.printMessages("9876691205" , false);
+					result.stream().forEach(System.out::println);
 					break;
+					
 				}
 				case 4:
 				{
