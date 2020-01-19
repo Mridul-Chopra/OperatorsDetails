@@ -47,6 +47,8 @@ public class Driver
 				}
 				case 4:
 				{
+					ArrayList<String>result = operator.printPunjabMessages("9876691205");
+					result.stream().forEach(System.out::println);
 					break;
 				}
 				case 5:

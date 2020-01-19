@@ -2,13 +2,15 @@ package Adder;
 
 import java.sql.*;
 import net.Paxcel.*;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class AddRecords {
 	
 	private static PreparedStatement st;
 	private static String sql;
-	
+	private static ArrayList<String> n = new ArrayList<String>();
 	
 	public static void main(String[] args)
 	{
@@ -17,38 +19,56 @@ public class AddRecords {
 			Resources.loadResources();
 			
 			
-			/*addOperators("Airtel" , "9876691201" , 10 , "Punjab" );
-			addOperators("Airtel" , "9876691212" , 10 , "Mohali" );
+			int Airtel = 1;
+			int Jio = 2;
+			int BSNL = 3;
 			
-			addOperators("Jio" , "9876691223" , 10 , "Punjab" );
-			addOperators("Jio" , "9876691234" , 10 , "Mohali" );
+			int Punjab = 1;
+			int Chandigarh = 2;
 			
-			addOperators("Vodafone" , "9876691245" , 10 , "Punjab" );
-			addOperators("Vodafone" , "9876691256" , 10 , "Mohali" );
-			*/
+			String asp ="98766912";
+			String asc ="98766920";
+			String jsp ="98766921";
+			String jsc ="98766922";
+			String bsp ="98766931";
+			String bsc ="98766932";
+			
+			
+			/*
+			 * Random ran = new Random();
+			 * 
+			 * int first = ran.nextInt(9); int second = ran.nextInt(9); String x =
+			 * first+""+second; String number = bsc+ x;
+			 * 
+			 * for(int i=1;i<=10;i++) {
+			 * 
+			 * number = (Long.parseLong(number)+1)+""; addOperators(number,Chandigarh,BSNL);
+			 * 
+			 * }
+			 * 
+			 * System.out.print("DONE");
+			 */
 			
 			
 			
-			/*Random ran =  new Random();
-			String start = "9876691201";
 			
-			for(int i =1; i<=50 ; i++)
+			System.out.println("Hello");	
+			get();
+			Random ran = new Random();
+			
+			for(int  i =1 ; i<=50 ; i++)
 			{
-			char status = ran.nextInt(100)%2==0 ? 'Y' : 'N';
+				String sender = n.get(ran.nextInt(n.size()));
+				String receiver = n.get(ran.nextInt(n.size()));
+				String message = getMessage(10);
+				
+				char status = ran.nextInt(100)%2==0 ? 'Y' : 'N';
 			
-			int randomOffset = ran.nextInt(60);
-			String sender = (Long.parseLong(start)+randomOffset)+"";
-			
-			randomOffset = ran.nextInt(60);
-			String receiver = (Long.parseLong(start)+randomOffset)+"";
-			
-			String message = getMessage(10);
-			
-			addMessages(sender , receiver , message , status);
+				addMessages(sender, receiver , message , status);
 			}
 			
 			
-			System.out.println("INSERTION SUCCESSFUL");*/
+			System.out.println("INSERTION SUCCESSFUL");
 			
 		}
 		catch(Exception e)
@@ -60,17 +80,16 @@ public class AddRecords {
 	
 	
 	
-	private static void addOperators(String name , String start , int offset , String Region) throws Exception
+	private static void addOperators(String number , int region , int operator) throws Exception
 	{
 		try 
 		{
-		sql = "Insert into OPERATORS values ( ? , ? , ? , ?)";
+		sql = "Insert into MOBILE_NUMBERS values ( ? , ? , ? ) ;";
 		st = Resources.conn.prepareStatement(sql);
 		
-		st.setString(1,name);
-		st.setString(2,start+"");
-		st.setString(3,(Long.parseLong(start)+offset)+"");
-		st.setString(4,Region);
+		st.setString(1,number);
+		st.setInt(2,operator);
+		st.setInt(3,region);
 		
 		st.executeUpdate();
 		}
@@ -132,6 +151,27 @@ public class AddRecords {
   
         return sb.toString(); 
     } 
+    
+    
+    private static void get() 
+    {
+    	sql = "Select NUMBER from MOBILE_NUMBERS ;";
+		try 
+		{
+			st = Resources.conn.prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+			
+			while(rs.next())
+				n.add(rs.getString("NUMBER"));
+		} 
+		catch (SQLException e) 
+		{
+			
+			e.printStackTrace();
+		}
+    	
+    	
+    }
 	
 	
 

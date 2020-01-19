@@ -84,6 +84,38 @@ public class DatabaseOperations {
 		
 	}
 	
-	
+	public ArrayList<String> printPunjabMessages(String receiver) throws Exception 
+	{
+		try 
+		{	
+			
+				sql = "Select MESSAGES from OPERATORS JOIN MESSAGES where OPERATORS.REGION = 'Punjab' and MESSAGES.RECEIVER = ?";
+			
+			st = Resources.conn.prepareStatement(sql);
+			
+			st.setString(1,receiver);
+			
+			rs = st.executeQuery();
+			
+			ArrayList<String> messages = new ArrayList<String>();
+			
+			
+				while(rs.next())
+				{
+					messages.add(rs.getString("MESSAGE"));
+				}
+				
+			
+			
+			return messages;
+			
+		}
+		catch(SQLException e)
+		{
+			Resources.log.error(e);
+			throw new Exception();
+		}
+		
+	}
 
 }
