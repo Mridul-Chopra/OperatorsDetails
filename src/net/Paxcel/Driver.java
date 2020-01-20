@@ -26,7 +26,7 @@ public class Driver
 			System.out.println("4. Print messages received by a number from Punjab.");
 			System.out.println("5. Print messages received by a number from Airtel Punjab.");
 			System.out.println("6. Print messages received from 98766912**.");
-			System.out.println("6. Print messages that were sent from Punjab and failed.");
+			System.out.println("7. Print messages that were sent from Punjab and failed.");
 			
 			
 			System.out.println("----------------------------------------------------------------------------");
