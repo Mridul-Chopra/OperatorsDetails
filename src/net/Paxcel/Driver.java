@@ -53,7 +53,7 @@ public class Driver
 					String sender = sc.nextLine();
 					System.out.print("Enter Receiver : ");
 					String receiver = sc.nextLine();
-					System.out.print("Messages are : ");
+					System.out.println("Messages are : ");
 					
 					/* MESSAGE PRINTING ENDS*/
 					
@@ -72,7 +72,7 @@ public class Driver
 					
 					System.out.print("Enter Sender : ");
 					String sender = sc.nextLine();
-					System.out.print("Messages are : ");
+					System.out.println("Messages are : ");
 					
 					/* MESSAGE PRINTING ENDS*/
 					
@@ -92,7 +92,7 @@ public class Driver
 					
 					System.out.print("Enter Receiver : ");
 					String receiver = sc.nextLine();
-					System.out.print("Messages are : ");
+					System.out.println("Messages are : ");
 					
 					/* MESSAGE PRINTING ENDS*/
 					
@@ -109,7 +109,7 @@ public class Driver
 				case 4:
 				{
 					ArrayList<String>result = operator.printPunjabMessages("9876692242");  // getting messages
-					System.out.print("Messages are : ");
+					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
 						System.out.println("NO RECORDS FOUND. "); // if no messages found
@@ -121,7 +121,7 @@ public class Driver
 				case 5:
 				{
 					ArrayList<String>result = operator.printPunjabAirtelMessages("9876692242");  // getting messages
-					System.out.print("Messages are : ");
+					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
 						System.out.println("NO RECORDS FOUND. ");   // if no messages found
@@ -134,7 +134,7 @@ public class Driver
 				case 6:
 				{
 					ArrayList<String>result = operator.numberLike();  // getting messages
-					System.out.print("Messages are : ");
+					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
 						System.out.println("NO RECORDS FOUND. ");  // if no messages found
