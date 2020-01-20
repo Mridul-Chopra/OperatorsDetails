@@ -27,7 +27,7 @@ public class DatabaseOperations {
 	{
 		try 
 		{
-			sql = "Select MESSAGE from MESSAGES where SENDER = ? and receiver = ?  ;";
+			sql = "Select MESSAGE from MESSAGES USE INDEX (MESSAGE_INDEX) where SENDER = ? and receiver = ?  ;";
 			st = Resources.conn.prepareStatement(sql);    // getting the statement
 			
 			
@@ -70,7 +70,7 @@ public class DatabaseOperations {
 		try 
 		{	
 			if(isSender)    // checking if sender
-  				sql = "Select MESSAGE from MESSAGES where SENDER = ? ;";   // sql quuery if sender 
+  				sql = "Select MESSAGE from MESSAGES USE INDEX (MESSAGE_INDEX)  where SENDER = ? ;";   // sql quuery if sender 
 			else
 				sql = "Select MESSAGE from MESSAGES where RECEIVER = ? ;"; // sql query if receiver
 			
@@ -114,7 +114,7 @@ public class DatabaseOperations {
 		try 
 		{	
 			
-			sql = "Select MESSAGES.MESSAGE from MESSAGES INNER JOIN MOBILE_NUMBERS "
+			sql = "Select MESSAGES.MESSAGE from MESSAGES USE INDEX (MESSAGE_INDEX) INNER JOIN MOBILE_NUMBERS "
 					+ "where MOBILE_NUMBERS.REGION_ID = '1' and MOBILE_NUMBERS.NUMBER = MESSAGES.SENDER "
 					+ "AND MESSAGES.RECEIVER = ? ";     // sql quert declared
 			
@@ -157,7 +157,7 @@ public class DatabaseOperations {
 		try 
 		{	
 			
-			sql = "Select MESSAGES.MESSAGE from MESSAGES INNER JOIN MOBILE_NUMBERS "
+			sql = "Select MESSAGES.MESSAGE from MESSAGES USE INDEX (MESSAGE_INDEX) INNER JOIN MOBILE_NUMBERS "
 					+ "where MOBILE_NUMBERS.REGION_ID = '1' and MOBILE_NUMBERS.NUMBER = MESSAGES.SENDER "
 					+ "AND MESSAGES.RECEIVER = ? "
 					+ "AND MOBILE_NUMBERS.OPERATOR_ID = 1 ; ";		// sql query declared
@@ -201,7 +201,7 @@ public class DatabaseOperations {
 		try 
 		{	
 			
-		sql= "SELECT MESSAGE FROM MESSAGES WHERE SENDER LIKE '98766912__'  ; ";  // sql Query 
+		sql= "SELECT MESSAGE FROM MESSAGES USE INDEX (MESSAGE_INDEX) WHERE SENDER LIKE '98766912__'  ; ";  // sql Query 
 			
 			st = Resources.conn.prepareStatement(sql);      // Preparing statement
 			rs = st.executeQuery();                        // Query execution
