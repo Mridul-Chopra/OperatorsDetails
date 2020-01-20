@@ -1,4 +1,4 @@
-package Adder;
+/*package Adder;
 
 import java.sql.*;
 import net.Paxcel.*;
@@ -34,7 +34,7 @@ public class AddRecords {
 			String bsc ="98766932";
 			
 			
-			/*
+			
 			 * Random ran = new Random();
 			 * 
 			 * int first = ran.nextInt(9); int second = ran.nextInt(9); String x =
@@ -47,7 +47,7 @@ public class AddRecords {
 			 * }
 			 * 
 			 * System.out.print("DONE");
-			 */
+			 
 			
 			
 			
@@ -56,7 +56,7 @@ public class AddRecords {
 			get();
 			Random ran = new Random();
 			
-			for(int  i =1 ; i<=50 ; i++)
+			for(int  i =1 ; i<=200 ; i++)
 			{
 				String sender = n.get(ran.nextInt(n.size()));
 				String receiver = n.get(ran.nextInt(n.size()));
@@ -176,3 +176,4 @@ public class AddRecords {
 	
 
 }
+*/

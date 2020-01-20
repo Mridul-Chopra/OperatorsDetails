@@ -6,58 +6,73 @@ import java.sql.DriverManager;
 import java.util.*;
 import org.apache.log4j.*;
 
+/**
+ * @author Mridul
+ *
+ */
 public class Resources {
 	
-	public static Logger log;
-	public static Properties connectionProp;
-	public static Connection conn;
+	public static Logger log;					// logger object 
+	public static Properties connectionProp;	// properties for database connection
+	public static Connection conn;				// Connection object for database connection
 	
 	
+	/*
+	 *	Preparing the Logger
+	*/
 	static
 	{
 		try
 		{
-		log = Logger.getLogger("GLOBAL");
-		Properties prop = new Properties();
-		prop.load(new FileInputStream("src\\resources\\log4j.properties"));
-		PropertyConfigurator.configure(prop);
-		log.setLevel(Level.ERROR);
+		log = Logger.getLogger("GLOBAL");  		// getting logger
+		Properties prop = new Properties();		// contains logger properties
+		prop.load(new FileInputStream("src\\resources\\log4j.properties")); // loading logger properties
+		PropertyConfigurator.configure(prop);  // configurating properties
+		log.setLevel(Level.ERROR);				// setting logging level
 		}
 		catch(Exception e)
 		{
-			System.out.println("Cannot load resources. Exiting");
-			System.exit(0);
+			System.out.println("Cannot load resources. Exiting");  
+			System.exit(0);		// Exiting on unsucessfull loading
 		}
 	}
 	
-	
+	/*
+	 * 	Setting connection properties
+	*/
 	static
 	{
 		try
 		{
-			connectionProp = new Properties();
-			connectionProp.load(new FileInputStream("src\\resources\\connectionProp.properties"));
-			PropertyConfigurator.configure(connectionProp);
+			connectionProp = new Properties();     // contains connection properties
+			connectionProp.load(new FileInputStream("src\\resources\\connectionProp.properties")); //loading the properties
+			PropertyConfigurator.configure(connectionProp);  // configuring properties
 			
-			Class.forName(connectionProp.getProperty("DB.Driver"));		
+			Class.forName(connectionProp.getProperty("DB.Driver"));		 // loading the DriverManager
 			
+			/*
+			 * Getting DB url , username and password
+			*/
 			String url = connectionProp.getProperty("DB.url");
 			String username = connectionProp.getProperty("DB.username");
 			String password = connectionProp.getProperty("DB.password");
 			
-			conn = DriverManager.getConnection(url,username,password);
+			conn = DriverManager.getConnection(url,username,password); // establishing connection
 			
 		}
 		catch(Exception e)
 		{
-			log.error(e);
-			System.out.println("Fatal Error. Exiting");
-			System.exit(0);
+			log.error(e);									// logging the error
+			System.out.println("Fatal Error. Exiting");     // Reporting to user
+			System.exit(0);									// exiting the system
 		}
 		
 	}
 	
-	public static void loadResources()
+	/**
+	 * 
+	 */
+	public static void loadResources()  // demo function to load all resources in static block
 	{}
 	
 
