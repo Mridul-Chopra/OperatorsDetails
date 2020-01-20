@@ -149,7 +149,7 @@ public class Driver
 				}
 				
 			}
-			
+		Resources.releaseResources();	
 		}
 		catch(Exception e)
 		{
