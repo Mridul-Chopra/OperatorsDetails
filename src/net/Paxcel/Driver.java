@@ -149,7 +149,7 @@ public class Driver
 				}
 				
 			}
-		Resources.releaseResources();	
+		Resources.releaseResources();	// releasing the resources before exiting
 		}
 		catch(Exception e)
 		{
