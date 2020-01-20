@@ -26,6 +26,7 @@ public class Driver
 			System.out.println("4. Print messages received by a number from Punjab.");
 			System.out.println("5. Print messages received by a number from Airtel Punjab.");
 			System.out.println("6. Print messages received from 98766912**.");
+			System.out.println("6. Print messages that were sent from Punjab and failed.");
 			
 			
 			System.out.println("----------------------------------------------------------------------------");
@@ -134,6 +135,19 @@ public class Driver
 				case 6:
 				{
 					ArrayList<String>result = operator.numberLike();  // getting messages
+					System.out.println("Messages are : ");
+					
+					if(result.isEmpty())
+						System.out.println("NO RECORDS FOUND. ");  // if no messages found
+					else 
+						result.stream().forEach(System.out::println); // print messages
+					
+					break;
+				}
+				
+				case 7:
+				{
+					ArrayList<String>result = operator.failedMessages();  // getting messages
 					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())

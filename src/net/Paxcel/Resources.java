@@ -3,6 +3,7 @@ package net.Paxcel;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.*;
 import org.apache.log4j.*;
 
@@ -27,7 +28,7 @@ public class Resources {
 		log = Logger.getLogger("GLOBAL");  		// getting logger
 		Properties prop = new Properties();		// contains logger properties
 		prop.load(new FileInputStream("src\\resources\\log4j.properties")); // loading logger properties
-		PropertyConfigurator.configure(prop);  // configurating properties
+		PropertyConfigurator.configure(prop);  // configuring properties
 		log.setLevel(Level.ERROR);				// setting logging level
 		}
 		catch(Exception e)
@@ -75,5 +76,21 @@ public class Resources {
 	public static void loadResources()  // demo function to load all resources in static block
 	{}
 	
+	/**
+	 * 
+	 */
+	public static void releaseResources()
+	{
+		try 
+		{
+		conn.close();			// Releasing the connection
+		}
+		catch(SQLException ex)
+		{
+			log.error(ex);													// logging the error
+			System.out.println("Fatal Error. Abnormal Termination");     	// Reporting to user
+			System.exit(0);													// exiting the system
+		}
+	}
 
 }

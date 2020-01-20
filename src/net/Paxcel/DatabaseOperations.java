@@ -227,6 +227,45 @@ public class DatabaseOperations {
 		}
 		
 	}
+	
+	
+	/**
+	 * @return
+	 * @throws Exception
+	 */
+	public ArrayList<String> failedMessages() throws Exception   // displays messages from numbers of specific pattern 
+	{
+		try 
+		{	
+			
+		sql= "SELECT MESSAGE FROM MESSAGES USE INDEX (MESSAGE_INDEX) INNER JOIN MOBILE_NUMBERS " + 
+				"WHERE MESSAGES.SENDER = MOBILE_NUMBERS.NUMBER AND " + 
+				"MOBILE_NUMBERS.REGION_ID = 1 AND MESSAGE_STATUS = 'N' ;";  // sql Query 
+			
+			st = Resources.conn.prepareStatement(sql);      // Preparing statement
+			rs = st.executeQuery();                        // Query execution
+			ArrayList<String> messages = new ArrayList<String>();
+			
+			/*
+				Storing Results in ArrayList
+			*/
+			while(rs.next())
+				{
+					messages.add(rs.getString("MESSAGE"));
+				}
+				
+			
+			
+			return messages;
+			
+		}
+		catch(SQLException e)
+		{
+			Resources.log.error(e);  // logging the exception
+			throw new Exception();	// exception to be handled by caller
+		}
+		
+	}
 
 
 
