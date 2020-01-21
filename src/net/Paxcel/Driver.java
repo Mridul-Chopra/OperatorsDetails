@@ -38,8 +38,8 @@ public class Driver
 			System.out.println("1. Sender : 9876692037    Receiver : 9876692244");
 			System.out.println("2. Sender : 9876692037");
 			System.out.println("3. Receiver : 9876692244");
-			System.out.println("4. Receiver : 9876692244");
-			System.out.println("5. Receiver : 9876692244");
+			System.out.println("4. Receiver : 9876692242");
+			System.out.println("5. Receiver : 9876692242");
 			System.out.println("----------------------------------------------------------------------------");
 		/*	
 				MESSAGE PRINTING ENDS
@@ -60,16 +60,19 @@ public class Driver
 					String sender = sc.nextLine();
 					System.out.print("Enter Receiver : ");
 					String receiver = sc.nextLine();
-					System.out.println("Messages are : ");
+					
 					
 					/* MESSAGE PRINTING ENDS*/
 					
 					ArrayList<String>result = operator.printMessages(sender , receiver); // getting Messages
 					
 					if(result.isEmpty())
-						System.out.println("NO RECORDS FOUND. ");   // if nothing found
+						System.out.println("NO RECORDS FOUND. "); // if no messages found
 					else 
-					result.stream().forEach(System.out::println);  // printing messages
+					{
+						System.out.println("Messages are : ");
+						result.stream().forEach(System.out::println); // print messages
+					}
 					
 					break;
 				}
@@ -79,16 +82,19 @@ public class Driver
 					
 					System.out.print("Enter Sender : ");
 					String sender = sc.nextLine();
-					System.out.println("Messages are : ");
+					
 					
 					/* MESSAGE PRINTING ENDS*/
 					
 					ArrayList<String>result = operator.printMessages(sender , true);  // getting messages
 					
 					if(result.isEmpty())
-						System.out.println("NO RECORDS FOUND. ");  // if no messages found
+						System.out.println("NO RECORDS FOUND. "); // if no messages found
 					else 
-						result.stream().forEach(System.out::println);  // print messages
+					{
+						System.out.println("Messages are : ");
+						result.stream().forEach(System.out::println); // print messages
+					}
 					
 					break;
 					
@@ -99,16 +105,19 @@ public class Driver
 					
 					System.out.print("Enter Receiver : ");
 					String receiver = sc.nextLine();
-					System.out.println("Messages are : ");
+					
 					
 					/* MESSAGE PRINTING ENDS*/
 					
 					ArrayList<String>result = operator.printMessages(receiver , false); // getting messages
 					
 					if(result.isEmpty())
-						System.out.println("NO RECORDS FOUND. ");  // if no messages found
+						System.out.println("NO RECORDS FOUND. "); // if no messages found
 					else 
-						result.stream().forEach(System.out::println);  // print messages
+					{
+						System.out.println("Messages are : ");
+						result.stream().forEach(System.out::println); // print messages
+					}
 					
 					break;
 					
@@ -119,18 +128,20 @@ public class Driver
 					
 					System.out.print("Enter Receiver : ");
 					String receiver = sc.nextLine();
-					System.out.println("Messages are : ");
+					
 					
 					/* MESSAGE PRINTING ENDS*/
 					
 					ArrayList<String>result = operator.printPunjabMessages(receiver);  // getting messages
-					System.out.println("Messages are : ");
+					
 					
 					if(result.isEmpty())
 						System.out.println("NO RECORDS FOUND. "); // if no messages found
 					else 
+					{
+						System.out.println("Messages are : ");
 						result.stream().forEach(System.out::println); // print messages
-					
+					}
 					break;
 				}
 				case 5:
@@ -147,9 +158,12 @@ public class Driver
 					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
-						System.out.println("NO RECORDS FOUND. ");   // if no messages found
+						System.out.println("NO RECORDS FOUND. "); // if no messages found
 					else 
+					{
+						System.out.println("Messages are : ");
 						result.stream().forEach(System.out::println); // print messages
+					}
 					
 					break;
 					
@@ -160,10 +174,12 @@ public class Driver
 					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
-						System.out.println("NO RECORDS FOUND. ");  // if no messages found
+						System.out.println("NO RECORDS FOUND. "); // if no messages found
 					else 
+					{
+						System.out.println("Messages are : ");
 						result.stream().forEach(System.out::println); // print messages
-					
+					}
 					break;
 				}
 				
@@ -173,10 +189,12 @@ public class Driver
 					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
-						System.out.println("NO RECORDS FOUND. ");  // if no messages found
+						System.out.println("NO RECORDS FOUND. "); // if no messages found
 					else 
+					{
+						System.out.println("Messages are : ");
 						result.stream().forEach(System.out::println); // print messages
-					
+					}
 					break;
 				}
 				default:

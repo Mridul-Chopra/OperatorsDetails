@@ -1,4 +1,4 @@
-/*package Adder;
+package adder;
 
 import java.sql.*;
 import net.Paxcel.*;
@@ -8,7 +8,7 @@ import java.util.Random;
 
 public class AddRecords {
 	
-	private static PreparedStatement st;
+/*	private static PreparedStatement st;
 	private static String sql;
 	private static ArrayList<String> n = new ArrayList<String>();
 	
@@ -173,7 +173,6 @@ public class AddRecords {
     	
     }
 	
-	
+*/	
 
 }
-*/

@@ -1,9 +1,10 @@
 package net.Paxcel;
 
 import java.io.FileInputStream;
-import JDBCConnectionPool.Pool;
 import java.util.*;
 import org.apache.log4j.*;
+
+import jdbcConnectionPool.Pool;
 
 /**
  * @author Mridul
@@ -13,6 +14,7 @@ public class Resources  {
 	
 	public static Logger log;					// logger object 
 	public static Properties connectionProp;	// properties for database connection
+	private static String url , username , password , driver;
 	
 	/*
 	 *	Preparing the Logger
@@ -35,7 +37,8 @@ public class Resources  {
 	}
 	
 	/*
-	 * 	Setting connection properties
+	 	Setting connection properties
+	*/
 	
 	static
 	{
@@ -43,18 +46,14 @@ public class Resources  {
 		{
 			connectionProp = new Properties();     // contains connection properties
 			connectionProp.load(new FileInputStream("src\\resources\\connectionProp.properties")); //loading the properties
-			PropertyConfigurator.configure(connectionProp);  // configuring properties
-			
-			Class.forName(connectionProp.getProperty("DB.Driver"));		 // loading the DriverManager
 			
 			
-			 * Getting DB url , username and password
+			 /* Getting DB url , username ,password , driver */
 			
-			String url = connectionProp.getProperty("DB.url");
-			String username = connectionProp.getProperty("DB.username");
-			String password = connectionProp.getProperty("DB.password");
-			
-			conn = DriverManager.getConnection(url,username,password); // establishing connection
+			driver = connectionProp.getProperty("DB.Driver") ;
+			url = connectionProp.getProperty("DB.url");
+			username = connectionProp.getProperty("DB.username");
+			password = connectionProp.getProperty("DB.password");
 			
 		}
 		catch(Exception e)
@@ -64,14 +63,25 @@ public class Resources  {
 			System.exit(0);									// exiting the system
 		}
 		
-	}*/
+	}
 	
 	/**
 	 * 
 	 */
 	public static void loadResources()  // demo function to load all resources in static block
 	{
-		Pool.establishPool();
+		try
+		{
+			Pool.setMaxLimit(11); // setting max number of connections in pool
+			Pool.setMinLimit(6);  // setting minimum number of connections in pool
+			Pool.setMaxWaitngProcesses(4);  // setting waiting processes limit
+			Pool.establishPool(url , username , password , driver );  // creating a pool
+		}
+		catch(Exception e)
+		{
+			System.out.println("Fatal Error. Exiting");     // Reporting to user
+			System.exit(0);									// exiting the system
+		}
 	}
 	
 	/**
