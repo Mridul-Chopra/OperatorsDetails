@@ -1,9 +1,12 @@
 package net.Paxcel;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.*;
+
+import JDBCConnectionPool.Pool;
 
 
 /**
@@ -28,7 +31,8 @@ public class DatabaseOperations {
 		try 
 		{
 			sql = "Select MESSAGE from MESSAGES USE INDEX (MESSAGE_INDEX) where SENDER = ? and receiver = ?  ;";
-			st = Resources.conn.prepareStatement(sql);    // getting the statement
+			Connection cn = Pool.get();			// getting connection from pool
+			st = cn.prepareStatement(sql);    // getting the statement
 			
 			
 			// Setting parameters in sql query						
@@ -46,7 +50,7 @@ public class DatabaseOperations {
 				}
 				
 			
-			
+			Pool.returnBack(cn);	// returning connection to pool
 			return messages;   // returning messages
 			
 		}
@@ -74,7 +78,8 @@ public class DatabaseOperations {
 			else
 				sql = "Select MESSAGE from MESSAGES where RECEIVER = ? ;"; // sql query if receiver
 			
-			st = Resources.conn.prepareStatement(sql);  // getting statement
+			Connection cn = Pool.get();		// getting connection from pool
+			st = cn.prepareStatement(sql);  // getting statement
 			
 			st.setString(1,number);    // setting parameters in query
 			
@@ -92,7 +97,7 @@ public class DatabaseOperations {
 				}
 				
 			
-			
+			Pool.returnBack(cn);		// returning connection to pool
 			return messages;
 			
 		}
@@ -116,9 +121,10 @@ public class DatabaseOperations {
 			
 			sql = "Select MESSAGES.MESSAGE from MESSAGES USE INDEX (MESSAGE_INDEX) INNER JOIN MOBILE_NUMBERS "
 					+ "where MOBILE_NUMBERS.REGION_ID = '1' and MOBILE_NUMBERS.NUMBER = MESSAGES.SENDER "
-					+ "AND MESSAGES.RECEIVER = ? ";     // sql quert declared
+					+ "AND MESSAGES.RECEIVER = ? ";     // sql query declared
 			
-			st = Resources.conn.prepareStatement(sql);  // getting statement
+			Connection cn = Pool.get();		// getting connection from pool
+			st = cn.prepareStatement(sql);  // getting statement
 			
 			st.setString(1,receiver);					// setting parameters in query
 			
@@ -135,7 +141,7 @@ public class DatabaseOperations {
 				}
 				
 			
-			
+			Pool.returnBack(cn);	// returning connection to pool
 			return messages;
 			
 		}
@@ -162,7 +168,8 @@ public class DatabaseOperations {
 					+ "AND MESSAGES.RECEIVER = ? "
 					+ "AND MOBILE_NUMBERS.OPERATOR_ID = 1 ; ";		// sql query declared
 			
-			st = Resources.conn.prepareStatement(sql);     // gettting statement
+			Connection cn = Pool.get();			// getting connection from pool
+			st = cn.prepareStatement(sql);     // getting statement
 			
 			st.setString(1,receiver);     // setting parameters in query
 			
@@ -179,7 +186,7 @@ public class DatabaseOperations {
 				}
 				
 			
-			
+			Pool.returnBack(cn);		// returning connection to pool
 			return messages;
 			
 		}
@@ -203,7 +210,8 @@ public class DatabaseOperations {
 			
 		sql= "SELECT MESSAGE FROM MESSAGES USE INDEX (MESSAGE_INDEX) WHERE SENDER LIKE '98766912__'  ; ";  // sql Query 
 			
-			st = Resources.conn.prepareStatement(sql);      // Preparing statement
+			Connection cn = Pool.get();			// getting connection from pool
+			st = cn.prepareStatement(sql);      // Preparing statement
 			rs = st.executeQuery();                        // Query execution
 			ArrayList<String> messages = new ArrayList<String>();
 			
@@ -216,7 +224,7 @@ public class DatabaseOperations {
 				}
 				
 			
-			
+			Pool.returnBack(cn);		// returning connection to pool
 			return messages;
 			
 		}
@@ -242,7 +250,8 @@ public class DatabaseOperations {
 				"WHERE MESSAGES.SENDER = MOBILE_NUMBERS.NUMBER AND " + 
 				"MOBILE_NUMBERS.REGION_ID = 1 AND MESSAGE_STATUS = 'N' ;";  // sql Query 
 			
-			st = Resources.conn.prepareStatement(sql);      // Preparing statement
+			Connection cn = Pool.get();			// getting connection from pool
+			st = cn.prepareStatement(sql);      // Preparing statement
 			rs = st.executeQuery();                        // Query execution
 			ArrayList<String> messages = new ArrayList<String>();
 			
@@ -255,7 +264,7 @@ public class DatabaseOperations {
 				}
 				
 			
-			
+			Pool.returnBack(cn);		// returning connection to pool
 			return messages;
 			
 		}

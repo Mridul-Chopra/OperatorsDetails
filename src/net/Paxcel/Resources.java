@@ -1,9 +1,8 @@
 package net.Paxcel;
 
 import java.io.FileInputStream;
+import JDBCConnectionPool.Pool;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
 import java.util.*;
 import org.apache.log4j.*;
 
@@ -15,8 +14,6 @@ public class Resources {
 	
 	public static Logger log;					// logger object 
 	public static Properties connectionProp;	// properties for database connection
-	public static Connection conn;				// Connection object for database connection
-	
 	
 	/*
 	 *	Preparing the Logger
@@ -40,7 +37,7 @@ public class Resources {
 	
 	/*
 	 * 	Setting connection properties
-	*/
+	
 	static
 	{
 		try
@@ -51,9 +48,9 @@ public class Resources {
 			
 			Class.forName(connectionProp.getProperty("DB.Driver"));		 // loading the DriverManager
 			
-			/*
+			
 			 * Getting DB url , username and password
-			*/
+			
 			String url = connectionProp.getProperty("DB.url");
 			String username = connectionProp.getProperty("DB.username");
 			String password = connectionProp.getProperty("DB.password");
@@ -68,13 +65,15 @@ public class Resources {
 			System.exit(0);									// exiting the system
 		}
 		
-	}
+	}*/
 	
 	/**
 	 * 
 	 */
 	public static void loadResources()  // demo function to load all resources in static block
-	{}
+	{
+		Pool.establishPool();
+	}
 	
 	/**
 	 * 
@@ -83,9 +82,9 @@ public class Resources {
 	{
 		try 
 		{
-		conn.close();			// Releasing the connection
+			Pool.deletePool();	// Releasing the connection
 		}
-		catch(SQLException ex)
+		catch(Exception ex)
 		{
 			log.error(ex);													// logging the error
 			System.out.println("Fatal Error. Abnormal Termination");     	// Reporting to user
