@@ -2,7 +2,6 @@ package net.Paxcel;
 
 import java.io.FileInputStream;
 import JDBCConnectionPool.Pool;
-import java.sql.Connection;
 import java.util.*;
 import org.apache.log4j.*;
 
@@ -10,7 +9,7 @@ import org.apache.log4j.*;
  * @author Mridul
  *
  */
-public class Resources {
+public class Resources  {
 	
 	public static Logger log;					// logger object 
 	public static Properties connectionProp;	// properties for database connection

@@ -38,6 +38,8 @@ public class Driver
 			System.out.println("1. Sender : 9876692037    Receiver : 9876692244");
 			System.out.println("2. Sender : 9876692037");
 			System.out.println("3. Receiver : 9876692244");
+			System.out.println("4. Receiver : 9876692244");
+			System.out.println("5. Receiver : 9876692244");
 			System.out.println("----------------------------------------------------------------------------");
 		/*	
 				MESSAGE PRINTING ENDS
@@ -113,7 +115,15 @@ public class Driver
 				}
 				case 4:
 				{
-					ArrayList<String>result = operator.printPunjabMessages("9876692242");  // getting messages
+					/*PRINTING MESSAGES TO USER*/
+					
+					System.out.print("Enter Receiver : ");
+					String receiver = sc.nextLine();
+					System.out.println("Messages are : ");
+					
+					/* MESSAGE PRINTING ENDS*/
+					
+					ArrayList<String>result = operator.printPunjabMessages(receiver);  // getting messages
 					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
@@ -125,7 +135,15 @@ public class Driver
 				}
 				case 5:
 				{
-					ArrayList<String>result = operator.printPunjabAirtelMessages("9876692242");  // getting messages
+					/*PRINTING MESSAGES TO USER*/
+					
+					System.out.print("Enter Receiver : ");
+					String receiver = sc.nextLine();
+					System.out.println("Messages are : ");
+					
+					/* MESSAGE PRINTING ENDS*/
+					
+					ArrayList<String>result = operator.printPunjabAirtelMessages(receiver);  // getting messages
 					System.out.println("Messages are : ");
 					
 					if(result.isEmpty())
